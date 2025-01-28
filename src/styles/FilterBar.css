@@ -5,6 +5,7 @@
   margin-top: 20px;
   width: 100%;
   max-width: 600px;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 select {
@@ -12,8 +13,35 @@ select {
   border-radius: 5px;
   border: 1px solid #ddd;
   font-size: 1rem;
+  flex: 1; /* Allow the select elements to grow/shrink as needed */
+  min-width: 150px; /* Prevent elements from shrinking too small */
 }
 
 select:focus {
   border-color: #007bff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .filter-bar {
+    gap: 8px; /* Reduce gap for smaller screens */
+    margin-top: 15px; /* Adjust spacing for compact layout */
+  }
+
+  select {
+    padding: 8px; /* Smaller padding for smaller screens */
+    font-size: 0.9rem; /* Adjust font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-bar {
+    gap: 5px; /* Further reduce gap for very small screens */
+    margin-top: 10px;
+  }
+
+  select {
+    padding: 6px; /* Further reduce padding */
+    font-size: 0.85rem; /* Smaller font size for very small screens */
+  }
 }

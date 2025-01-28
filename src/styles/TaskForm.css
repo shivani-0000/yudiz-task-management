@@ -3,7 +3,7 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: 90%; 
   max-width: 600px;
   display: flex;
   flex-direction: column;
@@ -38,4 +38,29 @@ input:focus,
 select:focus {
   border-color: #007bff;
   outline: none;
+}
+
+@media (max-width: 768px) {
+  .task-form {
+    padding: 15px;
+    gap: 10px; 
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.9rem; 
+    padding: 8px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .task-form {
+    width: 100%; 
+    padding: 10px; 
+  }
+
+  button {
+    font-size: 0.85rem; 
+  }
 }
