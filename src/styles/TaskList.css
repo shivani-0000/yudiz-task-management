@@ -100,42 +100,41 @@ button:disabled {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
 }
 
-/* Responsive Enhancements */
 @media (max-width: 768px) {
   .task-list {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust card size for smaller screens */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
     gap: 15px;
   }
 
   .task-card {
-    padding: 15px; /* Reduce padding for smaller screens */
+    padding: 15px; 
   }
 
   .task-info h3 {
-    font-size: 1rem; /* Adjust heading size for smaller screens */
+    font-size: 1rem; 
   }
 
   .task-info p {
-    font-size: 0.8rem; /* Adjust paragraph size for smaller screens */
+    font-size: 0.8rem; 
   }
 
   button {
-    padding: 6px 12px; /* Adjust button size */
+    padding: 6px 12px; 
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
   .task-list {
-    grid-template-columns: 1fr; /* One column layout for very small screens */
+    grid-template-columns: 1fr; 
   }
 
   .task-card {
-    padding: 10px; /* Compact padding */
+    padding: 10px; 
   }
 
   .task-info h3 {
-    font-size: 0.9rem; /* Smaller heading size */
+    font-size: 0.9rem; 
   }
 
   .task-info p {
@@ -143,12 +142,12 @@ button:disabled {
   }
 
   button {
-    padding: 5px 10px; /* Smaller buttons */
+    padding: 5px 10px; 
     font-size: 0.85rem;
   }
 
   .task-search-bar {
-    padding: 8px 12px; /* Compact search bar */
+    padding: 8px 12px; 
     font-size: 0.9rem;
   }
 }

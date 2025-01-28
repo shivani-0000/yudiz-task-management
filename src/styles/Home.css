@@ -3,19 +3,19 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 20px; /* Add default padding for larger screens */
+  padding: 20px; 
 }
 
 @media (max-width: 768px) {
   .home {
-    padding: 10px; /* Reduce padding for tablets and smaller devices */
-    gap: 15px; /* Adjust gap between items */
+    padding: 10px; 
+    gap: 15px; 
   }
 }
 
 @media (max-width: 480px) {
   .home {
-    padding: 8px; /* Further reduce padding for very small screens */
-    gap: 10px; /* Minimize gap for compact layout */
+    padding: 8px; 
+    gap: 10px; 
   }
 }
