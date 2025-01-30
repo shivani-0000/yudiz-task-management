@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import "../styles/FilterBar.css";
 
 const FilterBar = ({ setFilter }) => {
+  const handleCompletionChange = (e) => {
+    setFilter((prev) => ({ ...prev, completion: e.target.value }));
+  };
+
   const handleStatusChange = (e) => {
     setFilter((prev) => ({ ...prev, status: e.target.value }));
   };
@@ -13,11 +17,22 @@ const FilterBar = ({ setFilter }) => {
 
   return (
     <div className="filter-bar">
-      <select onChange={handleStatusChange}>
+      {/* Completion Filter */}
+      <select onChange={handleCompletionChange}>
         <option value="all">All</option>
         <option value="complete">Complete</option>
         <option value="incomplete">Incomplete</option>
       </select>
+
+      {/* Status Filter */}
+      <select onChange={handleStatusChange}>
+        <option value="all">All</option>
+        <option value="todo">Todo</option>
+        <option value="in progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+
+      {/* Priority Filter */}
       <select onChange={handlePriorityChange}>
         <option value="all">All</option>
         <option value="Low">Low</option>

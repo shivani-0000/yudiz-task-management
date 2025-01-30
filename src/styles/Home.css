@@ -3,19 +3,22 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 20px; 
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;  
+  margin: 0 auto;  
 }
 
 @media (max-width: 768px) {
   .home {
-    padding: 10px; 
-    gap: 15px; 
+    padding: 15px;
+    gap: 15px;
   }
 }
 
 @media (max-width: 480px) {
   .home {
-    padding: 8px; 
-    gap: 10px; 
+    padding: 10px;
+    gap: 12px;
   }
 }

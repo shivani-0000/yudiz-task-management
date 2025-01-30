@@ -17,8 +17,14 @@ export const fetchTasksAsync = createAsyncThunk(
       return response.data.map((task) => ({
         ...task,
         completed: task.completed ?? false,
+        status:
+          task.id % 3 === 0
+            ? "done"
+            : task.id % 2 === 0
+            ? "in progress"
+            : "todo",
         priority:
-          task.id % 3 === 0 ? "Low" : task.id % 2 === 0 ? "Medium" : "High", // Mock priority
+          task.id % 3 === 0 ? "Low" : task.id % 2 === 0 ? "Medium" : "High",
       }));
     } catch (error) {
       throw Error(error.message);
@@ -31,7 +37,7 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action) => {
-      state.tasks.push(action.payload);
+      state.tasks.unshift(action.payload);
     },
     updateTask: (state, action) => {
       const index = state.tasks.findIndex(

@@ -9,7 +9,11 @@ import "../styles/Home.css";
 const Home = () => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks.tasks);
-  const [filter, setFilter] = useState({ status: "all", priority: "all" });
+  const [filter, setFilter] = useState({
+    completion: "all",
+    status: "all",
+    priority: "all",
+  });
 
   useEffect(() => {
     dispatch(fetchTasksAsync());
@@ -18,22 +22,24 @@ const Home = () => {
   const filteredTasks = tasks
     .map((task) => ({
       ...task,
-      completed: task.completed ?? false, // Ensure that completed is always set
+      completed: task.completed ?? false,
     }))
     .filter((task) => {
-      const taskPriority = task.priority || "Medium";
+      // Filter by completion (Complete/Incomplete)
+      const completionMatch =
+        filter.completion === "all" ||
+        (filter.completion === "complete" && task.completed) ||
+        (filter.completion === "incomplete" && !task.completed);
 
-      // Filter by status (Complete/Incomplete)
+      // Filter by status (Todo/In Progress/Done)
       const statusMatch =
-        filter.status === "all" ||
-        (filter.status === "complete" && task.completed) ||
-        (filter.status === "incomplete" && !task.completed);
+        filter.status === "all" || task.status === filter.status;
 
       // Filter by priority (Low/Medium/High)
       const priorityMatch =
-        filter.priority === "all" || taskPriority === filter.priority;
+        filter.priority === "all" || task.priority === filter.priority;
 
-      return statusMatch && priorityMatch;
+      return completionMatch && statusMatch && priorityMatch;
     });
 
   return (
