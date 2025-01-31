@@ -11,12 +11,12 @@ const TaskList = ({ tasks }) => {
   const [newPriority, setNewPriority] = useState("");
   const [newStatus, setNewStatus] = useState("todo");
   const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false); 
-    }, 100); 
+      setLoading(false);
+    }, 100);
   }, []);
 
   const toggleComplete = (task) => {
@@ -33,7 +33,7 @@ const TaskList = ({ tasks }) => {
   const startEditing = (task) => {
     setEditingTaskId(task.id);
     setNewTitle(task.title);
-    setNewPriority(task.priority);
+    setNewPriority(task.priority || "Medium");
     setNewStatus(task.status || "todo");
   };
 
@@ -45,7 +45,7 @@ const TaskList = ({ tasks }) => {
             id: editingTaskId,
             title: newTitle,
             priority: newPriority || "Medium",
-            status: newStatus,
+            status: newStatus || "todo",
           })
         );
         setEditingTaskId(null);
@@ -54,84 +54,96 @@ const TaskList = ({ tasks }) => {
   };
 
   return (
-    <div>
+    <>
       {/* Search Bar */}
       <input
         type="text"
         placeholder="Search tasks..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
+        className="task-search-bar"
       />
-
-      {/* Display loading spinner while loading */}
-      {loading ? (
-        <div className="spinner">
-          <div className="loading"></div>
-        </div>
-      ) : (
-        <div className="task-list">
-          {tasks.length === 0 ? (
-            <div className="no-tasks-message">
-              No tasks match the filter criteria.
-            </div>
-          ) : (
-            tasks
-              .filter((task) => task.title.toLowerCase().includes(searchQuery))
-              .map((task) => (
-                <div
-                  key={task.id}
-                  className={`task-card ${
-                    task.completed ? "completed" : "incomplete"
-                  }`}
-                >
-                  {editingTaskId === task.id ? (
-                    <div>
-                      <input
-                        type="text"
-                        value={newTitle}
-                        onChange={(e) => setNewTitle(e.target.value)}
-                      />
-                      <select
-                        value={newPriority}
-                        onChange={(e) => setNewPriority(e.target.value)}
-                      >
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
-                      </select>
-                      <select
-                        value={newStatus}
-                        onChange={(e) => setNewStatus(e.target.value)}
-                      >
-                        <option value="todo">Todo</option>
-                        <option value="in progress">In Progress</option>
-                        <option value="done">Done</option>
-                      </select>
-                      <button onClick={handleSave}>Save</button>
-                      <button onClick={() => setEditingTaskId(null)}>
-                        Cancel
-                      </button>
-                    </div>
-                  ) : (
-                    <>
-                      <h3>{task.title}</h3>
-                      <p>Priority: {task.priority || "Medium"}</p>
-                      <p>Status: {task.status || "Todo"}</p>
-                      <button onClick={() => toggleComplete(task)}>
-                        {task.completed ? "Mark Incomplete" : "Mark Complete"}
-                      </button>
-                      <button onClick={() => startEditing(task)}>Edit</button>
-                      <button onClick={() => handleDelete(task.id)}>
-                        Delete
-                      </button>
-                    </>
-                  )}
-                </div>
-              ))
-          )}
-        </div>
-      )}
-    </div>
+      <div>
+        {/* Display loading spinner while loading */}
+        {loading ? (
+          <div className="spinner">
+            <div className="loading"></div>
+          </div>
+        ) : (
+          <div className="task-list">
+            {tasks.filter((task) =>
+              task.title.toLowerCase().includes(searchQuery)
+            ).length === 0 ? (
+              <div className="no-tasks-message">
+                No tasks match your search.
+              </div>
+            ) : (
+              tasks
+                .filter((task) =>
+                  task.title.toLowerCase().includes(searchQuery)
+                )
+                .map((task) => (
+                  <div
+                    key={task.id}
+                    className={`task-card ${
+                      task.completed ? "completed" : "incomplete"
+                    }`}
+                  >
+                    {editingTaskId === task.id ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={newTitle}
+                          onChange={(e) => setNewTitle(e.target.value)}
+                        />
+                        <select
+                          value={newPriority}
+                          onChange={(e) => setNewPriority(e.target.value)}
+                        >
+                          <option value="Low">Low</option>
+                          <option value="Medium">Medium</option>
+                          <option value="High">High</option>
+                        </select>
+                        <select
+                          value={newStatus}
+                          onChange={(e) => setNewStatus(e.target.value)}
+                        >
+                          <option value="todo">Todo</option>
+                          <option value="in progress">In Progress</option>
+                          <option value="done">Done</option>
+                        </select>
+                        <button onClick={handleSave}>Save</button>
+                        <button onClick={() => setEditingTaskId(null)}>
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="task-info">
+                        <h3>{task.title}</h3>
+                        <p>Priority: {task.priority || "Medium"}</p>
+                        <p>Status: {task.status || "Todo"}</p>
+                        <div className="task-actions">
+                          <button onClick={() => toggleComplete(task)}>
+                            {task.completed
+                              ? "Mark Incomplete"
+                              : "Mark Complete"}
+                          </button>
+                          <button onClick={() => startEditing(task)}>
+                            Edit
+                          </button>
+                          <button onClick={() => handleDelete(task.id)}>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

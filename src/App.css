@@ -3,14 +3,13 @@ body {
   background-color: lightyellow;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
 }
 
 .app-container {
   width: 100%;
   max-width: 1200px;
   margin-top: 50px;
+  margin: 0 auto;
   padding: 20px;
 }
 

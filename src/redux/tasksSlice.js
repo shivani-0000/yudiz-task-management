@@ -14,18 +14,31 @@ export const fetchTasksAsync = createAsyncThunk(
       const response = await axios.get(
         "https://jsonplaceholder.typicode.com/todos"
       );
-      return response.data.map((task) => ({
-        ...task,
-        completed: task.completed ?? false,
-        status:
-          task.id % 3 === 0
-            ? "done"
-            : task.id % 2 === 0
-            ? "in progress"
-            : "todo",
-        priority:
-          task.id % 3 === 0 ? "Low" : task.id % 2 === 0 ? "Medium" : "High",
-      }));
+
+      const combinations = [
+        { status: "done", priority: "Low" },
+        { status: "done", priority: "Medium" },
+        { status: "done", priority: "High" },
+        { status: "in progress", priority: "Low" },
+        { status: "in progress", priority: "Medium" },
+        { status: "in progress", priority: "High" },
+        { status: "todo", priority: "Low" },
+        { status: "todo", priority: "Medium" },
+        { status: "todo", priority: "High" },
+      ];
+
+      const tasks = response.data.map((task, index) => {
+        const combination = combinations[index % combinations.length];
+
+        return {
+          ...task,
+          completed: task.completed ?? false,
+          status: combination.status,
+          priority: combination.priority,
+        };
+      });
+
+      return tasks;
     } catch (error) {
       throw Error(error.message);
     }

@@ -18,14 +18,14 @@ const FilterBar = ({ setFilter }) => {
   return (
     <div className="filter-bar">
       {/* Completion Filter */}
-      <select onChange={handleCompletionChange}>
+      <select className="filter-bar-select" onChange={handleCompletionChange}>
         <option value="all">All</option>
         <option value="complete">Complete</option>
         <option value="incomplete">Incomplete</option>
       </select>
 
       {/* Status Filter */}
-      <select onChange={handleStatusChange}>
+      <select className="filter-bar-select" onChange={handleStatusChange}>
         <option value="all">All</option>
         <option value="todo">Todo</option>
         <option value="in progress">In Progress</option>
@@ -33,7 +33,7 @@ const FilterBar = ({ setFilter }) => {
       </select>
 
       {/* Priority Filter */}
-      <select onChange={handlePriorityChange}>
+      <select className="filter-bar-select" onChange={handlePriorityChange}>
         <option value="all">All</option>
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>

@@ -1,24 +1,23 @@
 .filter-bar {
   display: flex;
-  flex-wrap: wrap;  
-  gap: 15px;  
+  flex-wrap: wrap;
+  gap: 15px;
   justify-content: center;
   margin-top: 20px;
   width: 100%;
-  max-width: 700px;  
+  max-width: 700px;
 }
 
-select {
+.filter-bar-select {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
   font-size: 1rem;
-  flex: 1;
-  min-width: 160px;  
+  min-width: 160px;
   transition: border-color 0.3s ease;
 }
 
-select:focus {
+.filter-bar-select:focus {
   border-color: #007bff;
 }
 
@@ -28,10 +27,10 @@ select:focus {
     margin-top: 15px;
   }
 
-  select {
+  .filter-bar-select {
     padding: 9px;
-    font-size: 0.95rem; 
-    min-width: 140px; 
+    font-size: 0.95rem;
+    min-width: 140px;
   }
 }
 
@@ -41,9 +40,9 @@ select:focus {
     margin-top: 10px;
   }
 
-  select {
+  .filter-bar-select {
     padding: 8px;
     font-size: 0.9rem;
-    min-width: 120px;  
+    min-width: 120px;
   }
 }
