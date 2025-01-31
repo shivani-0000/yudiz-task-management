@@ -55,8 +55,7 @@ select:focus {
 }
 
 @media (max-width: 480px) {
-  .task-form {
-    width: 100%;
+  .task-form {      
     padding: 10px;
   }
 

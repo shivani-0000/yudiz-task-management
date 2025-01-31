@@ -80,6 +80,9 @@ button:disabled {
 }
 
 .task-search-bar {
+  display: block;
+  margin-left: auto; 
+  margin-right: auto; 
   width: 100%;
   max-width: 650px;
   padding: 10px 15px;
@@ -155,6 +158,12 @@ button:disabled {
     padding: 6px 12px;
     font-size: 0.9rem;
   }
+
+    .task-search-bar {
+    padding: 12px 15px; 
+    font-size: 1.1rem; 
+    max-width: 90%; 
+  }
 }
 
 @media (max-width: 480px) {
@@ -180,7 +189,8 @@ button:disabled {
   }
 
   .task-search-bar {
-    padding: 8px 12px;
-    font-size: 0.9rem;
+     padding: 12px 15px; 
+    font-size: 1rem; 
+
   }
 }
